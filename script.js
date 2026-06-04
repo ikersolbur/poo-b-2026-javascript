@@ -74,3 +74,40 @@ console.log(numerosEnObjetos);
 
 //funcion filter
 
+const numerosX =[90,70,30,10,50];
+const numerosFiltrados = numerosX.filter(
+    numX=>
+      numX > 50
+    
+)
+console.log (numerosFiltrados);
+const personas =[
+  {
+    nombre:"Iker", edad: 18
+  },{
+    nombre: "Brandon SP",edad: 18
+  },{
+    nombre:"RicardoSH",edad: 19
+},
+];
+const personasMayores = personas.filter(
+    (personaX) => {
+        return personaX.edad > 17;
+    }
+);
+console.log(personasMayores);
+//funcion reduce
+
+const numerosY = [3,6,9,12,16];
+
+const sumaNumero = numerosY.reduce(
+    (valorPersistente,elemento)=>
+       
+        valorPersistente+elemento
+        ,
+    
+    0
+)
+console.log(sumaNumero);
+
+
