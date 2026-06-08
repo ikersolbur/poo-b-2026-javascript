@@ -12,6 +12,7 @@ const estudianteX=[ {
   id: 7, nombre: "Lucia Gomez",   nota:95 },
 ]
 //refeerncias a DOM
+const seccionpromedio=document.getElementById("resultado-promedio");
 const seccionEstudiantes=document.getElementById("lista-estudiantes");
 const btnTodos=document.getElementById("btn-todos");
 const btnAprobados=document.getElementById("btn-aprobados");
@@ -42,6 +43,14 @@ seccionEstudiantes.innerHTML=listaTarjetas.join("");
 
 }
 
+const toFixedTrunc=(num,decimales)=>{
+    const factor=Math.pow(10,decimales);
+
+    const truncado=Math.trunc(num*factor)/factor;
+
+    return truncado.toFixed(decimales);
+}
+
 //Eventos
 btnTodos.addEventListener("click", ()=> {
         renderizarLista(estudiantes);
@@ -60,6 +69,18 @@ btnReprobados.addEventListener("click",
     ()=>{
     const reprobados=estudiantes.filter(unEstudianteX => unEstudianteX.nota < 61)
     renderizarLista(reprobados);
+})
+btnPromedio.addEventListener("click",()=>{
+    const sumaNotas=estudiantes.reduce(
+        (valorPersistente,estudiante)=>{
+            return valorPersistente + estudiante.nota;
+        },
+        0);
+    const promedio=sumaNotas/estudiantes.length;
+    console.log(toFixedTrunc(promedio,2));
+    seccionpromedio.innerHTML="Promedio: " + toFixedTrunc(promedio,2);
+    seccionpromedio.style.display="block";
+
 })
 
     //Lamadas a funciones
